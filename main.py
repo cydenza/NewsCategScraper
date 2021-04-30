@@ -9,6 +9,9 @@ html = urlopen("http://www.naver.com/")
 bsObj = BeautifulSoup(html.read(), "html.parser")
 print(bsObj)
 
+nameList = bsObj.findAll("em", {"class":"name"})
+for name in nameList:
+    print(name.get_text())
 quit()
 
 driver = webdriver.Chrome('chromedriver')
