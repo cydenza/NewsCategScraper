@@ -28,20 +28,47 @@ url = "https://news.naver.com/main/list.nhn?mode=LS2D&mid=shm&sid1=100&sid2=264"
 #html = urlopen(url, context=context)
 #bsObj = BeautifulSoup(html.read(), "html.parser")
 
-req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-bsObj = BeautifulSoup(req.text, "html.parser")
+#req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+#bsObj = BeautifulSoup(req.text, "html.parser")
 
+def getLinks(url):
+    req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+    bsObj = BeautifulSoup(req.text, "html.parser")
+    return bsObj
+
+bsObj = getLinks(url)
+
+print("########  Find Next News Pages ")
+
+# 뉴스 페이지들 얻는다. 추후 클릭해서 다음 페이지로 넘어가기 위함
 listb = bsObj.find("div", {"class":"paging"})
 print(listb)
 a = listb.findAll("a")
 for i in a:
     if 'href' in i.attrs:
         print(i)
-quit()
 
+print("########  Find News List ")
+# 뉴스목록에서 해당 뉴스를 클릭해서 간다.
 #nameList = bsObj.findAll("div", {"class":"list_body"})
 div = bsObj.find("div", {"class":"list_body newsflash_body"})
-a = div.findAll("a")
+NewsListUrl = []
+aTag = div.findAll("a")
+for i in aTag:
+    if 'href' in i.attrs:
+        NewsListUrl.append(i.attrs['href'])
+        #print(i)
+
+#print(NewsListUrl)
+
+# 뉴스 내용 얻어온다.
+for i in NewsListUrl:
+    print(i)
+    news = getLinks(i)
+    print(news)
+    quit()
+
+# 다시 뉴스 목록으로 돌아간다.
 
 
 #print(nameList.get_text())
