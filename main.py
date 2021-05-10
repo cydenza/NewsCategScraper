@@ -28,7 +28,36 @@ urlList = [["정치", "청와대", "https://news.nate.com/subsection?mid=n0202"]
            ["정치", "북한", "https://news.nate.com/subsection?mid=n0205"],
            ["정치", "행정", "https://news.nate.com/subsection?mid=n0206"],
            ["정치", "정치일반", "https://news.nate.com/subsection?mid=n0207"],
-           ["경제", "생활경제", "https://news.nate.com/subsection?mid=n0302"]]
+           ["경제", "생활경제", "https://news.nate.com/subsection?mid=n0302"],
+           ["경제", "부동산", "https://news.nate.com/subsection?mid=n0303"],
+           ["경제", "금융/증권", "https://news.nate.com/subsection?mid=n0304"],
+           ["경제", "산업/기업", "https://news.nate.com/subsection?mid=n0305"],
+           ["경제", "취업/창업", "https://news.nate.com/subsection?mid=n0306"],
+           ["경제", "국제경제", "https://news.nate.com/subsection?mid=n0307"],
+           ["경제", "경제일반", "https://news.nate.com/subsection?mid=n0308"],
+           ["사회", "사건/사고", "https://news.nate.com/subsection?mid=n0402"],
+           ["사회", "교육/학교", "https://news.nate.com/subsection?mid=n0403"],
+           ["사회", "교통/지역", "https://news.nate.com/subsection?mid=n0404"],
+           ["사회", "인권/복지", "https://news.nate.com/subsection?mid=n0405"],
+           ["사회", "여성/노동", "https://news.nate.com/subsection?mid=n0406"],
+           ["사회", "환경", "https://news.nate.com/subsection?mid=n0407"],
+           ["사회", "미디어", "https://news.nate.com/subsection?mid=n0408"],
+           ["사회", "종교", "https://news.nate.com/subsection?mid=n0409"],
+           ["사회", "인물", "https://news.nate.com/subsection?mid=n0410"],
+           ["사회", "사회일반", "https://news.nate.com/subsection?mid=n0411"],
+           ["세계", "아시아/호주", "https://news.nate.com/subsection?mid=n0502"],
+           ["세계", "미국/중남미", "https://news.nate.com/subsection?mid=n0503"],
+           ["세계", "유럽", "https://news.nate.com/subsection?mid=n0504"],
+           ["세계", "중동/아프리카", "https://news.nate.com/subsection?mid=n0505"],
+           ["세계", "해외화제", "https://news.nate.com/subsection?mid=n0506"],
+           ["세계", "세계일반", "https://news.nate.com/subsection?mid=n0507"],
+           ["IT/과학", "과학", "https://news.nate.com/subsection?mid=n0602"],
+           ["IT/과학", "디지털", "https://news.nate.com/subsection?mid=n0603"],
+           ["IT/과학", "컴퓨터/인터넷", "https://news.nate.com/subsection?mid=n0604"],
+           ["IT/과학", "뉴미디어/통신", "https://news.nate.com/subsection?mid=n0605"],
+           ["IT/과학", "게임", "https://news.nate.com/subsection?mid=n0606"],
+           ["IT/과학", "IT/과학일반", "https://news.nate.com/subsection?mid=n0607"]
+           ]
 
 
 """
@@ -166,10 +195,8 @@ for urlstr in urlList:
                     f.write("\n")
                     f.write(rNews.get_text().strip())
 
-                break       # 뉴스목록 중 하나만 읽고 끝
-                #quit()
-            break           # 뉴스 페이지 중 첫페이지만 읽고 끝
-
+                #break       # 뉴스목록 중 하나만 읽고 끝
+            #break           # 뉴스 페이지 중 첫페이지만 읽고 끝
         #break               # 뉴스 날짜 중 첫 날짜 페이지만 읽고 끝
 
         #print(nameList.get_text())
