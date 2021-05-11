@@ -9,6 +9,11 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import os
+import kss          # 한글 문장 토큰화
+import nltk
+from nltk.corpus import stopwords
+
+#nltk.download()
 
 # 다운로드 받을 디렉토리
 download_directory = "D:\\news_scrap\\"
@@ -81,6 +86,21 @@ print(days_range)
 #context = ssl._create_unverified_context()
 #html = urlopen(url, context=context)
 #bsObj = BeautifulSoup(html.read(), "html.parser")
+
+import re
+
+def clean_str(string):
+    string = re.sub(r"[^가-힣A-Za-z0-9(),!?%.\'\`]", " ", string)
+    string = re.sub(r"\'ll", " \'ll", string)
+    string = re.sub(r",", " , ", string)
+    string = re.sub(r"!'", " ! ", string)
+    string = re.sub(r"\(", "", string)
+    string = re.sub(r"\)", "", string)
+    string = re.sub(r"\?", " \? ", string)
+    string = re.sub(r"\s{2,}", " ", string)
+    string = re.sub(r"\'{2,}", "\'", string)
+    string = re.sub(r"\'", "", string)
+    return string.lower()
 
 def getLinks(url):
     if url[0] == "/" :
@@ -181,7 +201,12 @@ for urlstr in urlList:
                 for i in range(len(ass)):
                     rNews.find("a").extract()
 
-                print(rNews.get_text().strip())
+                text = rNews.get_text().strip()
+                text = text.split('\n')
+                text = [clean_str(sentence) for sentence in text]
+
+                #text = kss.split_sentences(text)
+                print(text)
 
                 download_count = download_count + 1
                 if not os.path.isdir(download_directory):
@@ -193,11 +218,12 @@ for urlstr in urlList:
                     f.write("\n")
                     f.write(category_2)
                     f.write("\n")
-                    f.write(rNews.get_text().strip())
+                    for sent in text:
+                        f.write(sent)
 
-                #break       # 뉴스목록 중 하나만 읽고 끝
-            #break           # 뉴스 페이지 중 첫페이지만 읽고 끝
-        #break               # 뉴스 날짜 중 첫 날짜 페이지만 읽고 끝
+                break       # 뉴스목록 중 하나만 읽고 끝
+            break           # 뉴스 페이지 중 첫페이지만 읽고 끝
+        break               # 뉴스 날짜 중 첫 날짜 페이지만 읽고 끝
 
         #print(nameList.get_text())
         #print(a)
