@@ -11,9 +11,10 @@ import datetime
 import os
 import kss          # 한글 문장 토큰화
 import nltk
-from nltk.corpus import stopwords
+#from nltk.corpus import stopwords
 
 #nltk.download()
+#quit()
 
 # 다운로드 받을 디렉토리
 download_directory = "D:\\news_scrap\\"
@@ -90,16 +91,8 @@ print(days_range)
 import re
 
 def clean_str(string):
-    string = re.sub(r"[^가-힣A-Za-z0-9(),!?%.\'\`]", " ", string)
-    string = re.sub(r"\'ll", " \'ll", string)
-    string = re.sub(r",", " , ", string)
-    string = re.sub(r"!'", " ! ", string)
-    string = re.sub(r"\(", "", string)
-    string = re.sub(r"\)", "", string)
-    string = re.sub(r"\?", " \? ", string)
-    string = re.sub(r"\s{2,}", " ", string)
-    string = re.sub(r"\'{2,}", "\'", string)
-    string = re.sub(r"\'", "", string)
+    #string = re.sub(r"[^가-힣A-Za-z0-9(),!?%.\'\`\+\-\=$#@*&\^\*\/]", " ", string)
+    string = re.sub(r"[^가-힣A-Za-z0-9(),!?%.\'\`\+\-\=$#@*&\^\*\/]", " ", string)
     return string.lower()
 
 def getLinks(url):
