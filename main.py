@@ -19,15 +19,9 @@ import nltk
 # 다운로드 받을 디렉토리
 download_directory = "D:\\news_scrap\\"
 download_directory = download_directory + datetime.datetime.today().strftime("%Y%m%d%H%M") + "\\"
-print(download_directory)
+print("### 다운로드 폴더 : ", download_directory)
 
-# 아래는 네이버
-#url = "https://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=100"              #정치
-#url = "https://news.naver.com/main/list.nhn?mode=LS2D&mid=shm&sid1=100&sid2=264"    #청와대
-#url = "https://news.naver.com/main/read.nhn?mode=LS2D&mid=shm&sid1=100&sid2=264&oid=011&aid=0003907365"
-#url = "https://news.naver.com/main/read.nhn?mode=LS2D&mid=shm&sid1=101&sid2=259&oid=014&aid=0004634895"
-
-# 여기는 네이트
+# 네이트
 urlList = [["정치", "청와대", "https://news.nate.com/subsection?mid=n0202"],
            ["정치", "국회/정당", "https://news.nate.com/subsection?mid=n0203"],
            ["정치", "외교/국방", "https://news.nate.com/subsection?mid=n0204"],
@@ -146,7 +140,7 @@ for urlstr in urlList:
         NextPageIndex = 0
 
         listb = bsObj.find("div", {"class":"paging"})
-        #print(listb)
+        print("#### 찾은 page들 : ", listb)
         a = listb.findAll("a")
         for i in a:
             if 'href' in i.attrs:
@@ -156,6 +150,7 @@ for urlstr in urlList:
                 print(NextPage)
                 NextPages.append(NextPage)
 
+        print("### 찾은 페이지 갯수 : ", len(NextPages))
         for page in NextPages:
             print("### NextPageIndex : ", NextPageIndex)
             if NextPageIndex != 0:
@@ -167,7 +162,7 @@ for urlstr in urlList:
             # 뉴스목록에서 해당 뉴스를 클릭해서 간다.
 
             div = bsObj.find("div", {"id":"newsContents"})
-            #print(div)
+            print(div)
             aTag = div.findAll("a", {"class":"lt1"})
             print(aTag)
 
