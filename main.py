@@ -17,7 +17,7 @@ import nltk
 #quit()
 
 # 다운로드 받을 디렉토리
-download_directory = "D:\\news_scrap\\"
+download_directory = "c:\\users\\cydenza\\news_scrap\\"
 download_directory = download_directory + datetime.datetime.today().strftime("%Y%m%d%H%M") + "\\"
 print("### 다운로드 폴더 : ", download_directory)
 
@@ -209,14 +209,15 @@ for urlstr in urlList:
                     for sent in text:
                         f.write(sent)
 
-                break       # 뉴스목록 중 하나만 읽고 끝
-            break           # 뉴스 페이지 중 첫페이지만 읽고 끝
-        break               # 뉴스 날짜 중 첫 날짜 페이지만 읽고 끝
+                #break       # 뉴스목록 중 하나만 읽고 끝
+            #break           # 뉴스 페이지 중 첫페이지만 읽고 끝
+        #break               # 뉴스 날짜 중 첫 날짜 페이지만 읽고 끝
 
         #print(nameList.get_text())
         #print(a)
         #for name in nameList:
         #    print(name.get_text())
+print("뉴스 파일 다운르도 끝. 파일갯수: ", download_count)
 quit()
 
 """
